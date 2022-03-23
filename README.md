@@ -1,3 +1,7 @@
+# Useful links
+
+- alternate open source authentication method: https://supertokens.com
+
 # Install
 
 - Install python 3.10.0 with pyenv : `pyenv install 3.10.0` and then `pyenv local 3.10.0`
