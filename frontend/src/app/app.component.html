@@ -1,8 +1,4 @@
-<button (click)="changeTheme()">
-  <mat-icon *ngIf="currentTheme == 'dark'" color="primary">dark_mode </mat-icon>
-  <mat-icon *ngIf="currentTheme == 'light'" color="primary">
-    light_mode
-  </mat-icon>
-</button>
-
-<router-outlet></router-outlet>
+<app-shell>
+  <router-outlet></router-outlet>
+  Hello WOrld
+</app-shell>
