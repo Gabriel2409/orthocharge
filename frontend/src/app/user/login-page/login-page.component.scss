@@ -1,10 +1,17 @@
 .auth-wrapper {
   text-align: center;
 }
+
 button {
-  img {
-    width: 1.25em;
-  }
+  min-width: 400px;
+  margin: 5px;
+}
+.google-logo-img {
+  width: 1.25em;
+}
+
+.facebook-logo-img {
+  width: 1.5em;
 }
 
 .logout {

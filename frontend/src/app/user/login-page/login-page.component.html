@@ -1,7 +1,23 @@
 <div class="auth-wrapper">
   <div *ngIf="!(angularFireAuth.authState | async)">
     <button class="color-transition" mat-raised-button appGoogleSignin>
-      <img src="/assets/google-logo.svg" alt="google-logo" /> Login with Google
+      <img
+        class="google-logo-img"
+        src="/assets/google-logo.svg"
+        alt="google-logo"
+      />
+      Login with Google
+    </button>
+  </div>
+
+  <div *ngIf="!(angularFireAuth.authState | async)">
+    <button class="color-transition" mat-raised-button appFacebookSignin>
+      <img
+        class="facebook-logo-img"
+        src="/assets/facebook-logo.svg"
+        alt="facebook-logo"
+      />
+      Login with Facebook
     </button>
   </div>
 
