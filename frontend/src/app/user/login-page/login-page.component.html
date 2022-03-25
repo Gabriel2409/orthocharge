@@ -1,9 +1,13 @@
 <div class="auth-wrapper">
   <div *ngIf="!(angularFireAuth.authState | async)">
-    <button mat-raised-button appGoogleSignin>
+    <button class="color-transition" mat-raised-button appGoogleSignin>
       <img src="/assets/google-logo.svg" alt="google-logo" /> Login with Google
     </button>
   </div>
+
+  <h5>OR</h5>
+
+  <app-email-login></app-email-login>
 
   <div class="logout" *ngIf="angularFireAuth.authState | async as user">
     <p>

@@ -28,3 +28,9 @@ body[data-theme="light-mode"] {
 body[data-theme="dark-mode"] {
   @include mat.all-component-themes($dark-theme);
 }
+
+/* For some reason, transition does not work when I attach it to body.
+I have to add it manually to most of the elements */
+.color-transition {
+  transition: background-color 1s !important;
+}
