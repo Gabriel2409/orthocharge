@@ -3,7 +3,16 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  // firebase is secured in the backend so its ok to copy frontend config here
+  firebaseConfig: {
+    apiKey: 'AIzaSyDwhTcveNoFbByDgec3gNT86KkUUBNeTDk',
+    authDomain: 'ortho-charge.firebaseapp.com',
+    projectId: 'ortho-charge',
+    storageBucket: 'ortho-charge.appspot.com',
+    messagingSenderId: '583241677425',
+    appId: '1:583241677425:web:3a510744b2aff2ed05b9d0',
+  },
 };
 
 /*
