@@ -10,7 +10,21 @@
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
       <a mat-list-item routerLink="/" (click)="drawer.close()">Home</a>
-      <a mat-list-item routerLink="/login" (click)="drawer.close()">login</a>
+      <a
+        *ngIf="!(angularFireAuth.authState | async)"
+        mat-list-item
+        routerLink="/login"
+        (click)="drawer.close()"
+        >Login</a
+      >
+      <a
+        *ngIf="angularFireAuth.authState | async"
+        mat-list-item
+        routerLink="/logout"
+        (click)="onLogout()"
+        (click)="drawer.close()"
+        >Logout</a
+      >
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -27,7 +41,18 @@
       <span class="logo" routerLink="/"> 📙 OrtoCharge</span>
       <span class="fill-space"></span>
       <div *ngIf="!(isHandset$ | async)">
-        <a mat-button routerLink="/login">🔑 Login</a>
+        <a
+          *ngIf="!(angularFireAuth.authState | async)"
+          mat-button
+          routerLink="/login"
+          >🔑 Login</a
+        >
+        <a
+          *ngIf="angularFireAuth.authState | async"
+          mat-button
+          (click)="onLogout()"
+          >🚪 Logout</a
+        >
       </div>
       <button mat-icon-button (click)="themeService.getNextTheme()">
         <mat-icon *ngIf="themeService.themeModeChanged.value == 'dark-mode'"

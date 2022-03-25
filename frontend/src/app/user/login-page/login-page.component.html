@@ -29,8 +29,6 @@
     <p>
       Logged in as <strong>{{ user.email }}</strong>
     </p>
-    <button mat-stroked-button (click)="angularFireAuth.signOut()">
-      Logout
-    </button>
+    <button mat-stroked-button (click)="onLogout()">Logout</button>
   </div>
 </div>

@@ -1,7 +1,11 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
+import { LoginService } from 'src/app/services/login.service';
+import { SnackService } from 'src/app/services/snack.service';
 import { ThemeService } from 'src/app/services/theme.service';
 
 @Component({
@@ -24,7 +28,9 @@ export class ShellComponent implements OnInit, OnDestroy {
 
   constructor(
     private breakpointObserver: BreakpointObserver,
+    private loginService: LoginService,
     private renderer: Renderer2,
+    public angularFireAuth: AngularFireAuth,
     public themeService: ThemeService
   ) {}
   ngOnDestroy(): void {
@@ -39,5 +45,8 @@ export class ShellComponent implements OnInit, OnDestroy {
           this.renderer.setAttribute(document.body, 'data-theme', themeMode);
         },
       });
+  }
+  onLogout() {
+    this.loginService.logoutUser();
   }
 }

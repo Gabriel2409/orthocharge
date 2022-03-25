@@ -6,6 +6,8 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { LoginService } from 'src/app/services/login.service';
+import { SnackService } from 'src/app/services/snack.service';
 
 @Component({
   selector: 'app-email-login',
@@ -22,7 +24,9 @@ export class EmailLoginComponent implements OnInit {
 
   constructor(
     private angularFireAuth: AngularFireAuth,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private snackService: SnackService,
+    private loginService: LoginService
   ) {}
 
   ngOnInit(): void {
@@ -73,6 +77,7 @@ export class EmailLoginComponent implements OnInit {
       if (this.isLogin) {
         await this.angularFireAuth.signInWithEmailAndPassword(email, password);
         this.loading = false;
+        this.loginService.redirectToPrevUrlOnLogin();
       }
       if (this.isSignup) {
         await this.angularFireAuth.createUserWithEmailAndPassword(
@@ -83,8 +88,17 @@ export class EmailLoginComponent implements OnInit {
       }
 
       if (this.isPasswordReset) {
-        await this.angularFireAuth.sendPasswordResetEmail(email);
-        this.serverMessage = 'Check your email';
+        const actionCodeSettings = {
+          // After password reset, the user will be give the ability to go back
+          // to this page.
+          url: 'http://localhost:4200/login',
+          handleCodeInApp: false,
+        };
+        await this.angularFireAuth.sendPasswordResetEmail(
+          email,
+          actionCodeSettings
+        );
+        this.snackService.emailSent();
         this.loading = false;
       }
     } catch (err: any) {
