@@ -41,6 +41,7 @@
       <span class="logo" routerLink="/"> 📙 OrtoCharge</span>
       <span class="fill-space"></span>
       <div *ngIf="!(isHandset$ | async)">
+        <a mat-button routerLink="/kanban">⌨ Kanban</a>
         <a
           *ngIf="!(angularFireAuth.authState | async)"
           mat-button
