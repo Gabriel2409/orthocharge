@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { LoginService } from 'src/app/services/login.service';
-import { SnackService } from 'src/app/services/snack.service';
 
 @Component({
   selector: 'app-login-page',
