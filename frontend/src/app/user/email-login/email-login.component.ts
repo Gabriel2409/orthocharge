@@ -25,8 +25,7 @@ export class EmailLoginComponent implements OnInit {
   constructor(
     private angularFireAuth: AngularFireAuth,
     private formBuilder: FormBuilder,
-    private snackService: SnackService,
-    private loginService: LoginService
+    private snackService: SnackService
   ) {}
 
   ngOnInit(): void {
@@ -77,7 +76,6 @@ export class EmailLoginComponent implements OnInit {
       if (this.isLogin) {
         await this.angularFireAuth.signInWithEmailAndPassword(email, password);
         this.loading = false;
-        this.loginService.redirectToPrevUrlOnLogin();
       }
       if (this.isSignup) {
         await this.angularFireAuth.createUserWithEmailAndPassword(

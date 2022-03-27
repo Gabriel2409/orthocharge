@@ -7,14 +7,10 @@ import { LoginService } from '../services/login.service';
   selector: '[appGoogleSignin]',
 })
 export class GoogleSigninDirective {
-  constructor(
-    private angularFireAuth: AngularFireAuth,
-    private loginService: LoginService
-  ) {}
+  constructor(private angularFireAuth: AngularFireAuth) {}
 
   @HostListener('click')
   async onClick() {
     await this.angularFireAuth.signInWithPopup(new GoogleAuthProvider());
-    this.loginService.redirectToPrevUrlOnLogin();
   }
 }

@@ -29,4 +29,10 @@ export class BoardListComponent implements OnInit, OnDestroy {
     // sorts in backend
     this.boardService.sortBoards(this.boards);
   }
+  async openBoardDialog() {
+    await this.boardService.createBoard({
+      title: 'Title',
+      priority: this.boards.length,
+    });
+  }
 }

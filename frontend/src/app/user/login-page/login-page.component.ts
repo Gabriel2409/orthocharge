@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { LoginService } from 'src/app/services/login.service';
 import { SnackService } from 'src/app/services/snack.service';
 
@@ -10,15 +11,21 @@ import { SnackService } from 'src/app/services/snack.service';
   styleUrls: ['./login-page.component.scss'],
 })
 export class LoginPageComponent implements OnInit {
-  returnUrl: string = '/';
+  authStateSubscription: Subscription | null = null;
   constructor(
     public angularFireAuth: AngularFireAuth,
-    private route: ActivatedRoute,
     private loginService: LoginService
   ) {}
+  ngOnDestroy(): void {
+    if (this.authStateSubscription) this.authStateSubscription.unsubscribe();
+  }
 
   ngOnInit(): void {
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    this.authStateSubscription = this.angularFireAuth.authState.subscribe({
+      next: (user) => {
+        if (user) this.loginService.redirectToPrevUrlOnLogin();
+      },
+    });
   }
   onLogout() {
     this.loginService.logoutUser();

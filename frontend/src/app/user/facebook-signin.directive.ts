@@ -6,14 +6,10 @@ import { LoginService } from '../services/login.service';
   selector: '[appFacebookSignin]',
 })
 export class FacebookSigninDirective {
-  constructor(
-    private angularFireAuth: AngularFireAuth,
-    private loginService: LoginService
-  ) {}
+  constructor(private angularFireAuth: AngularFireAuth) {}
 
   @HostListener('click')
   async onClick() {
     await this.angularFireAuth.signInWithPopup(new FacebookAuthProvider());
-    this.loginService.redirectToPrevUrlOnLogin();
   }
 }
