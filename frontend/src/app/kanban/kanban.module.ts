@@ -8,11 +8,15 @@ import { SharedModule } from '../shared/shared.module';
 import { KanbanRoutingModule } from './kanban-routing.module';
 import { BoardListComponent } from './board-list/board-list.component';
 import { BoardComponent } from './board/board.component';
+import { BoardDialogComponent } from './dialogs/board-dialog.component';
+import { TaskDialogComponent } from './dialogs/task-dialog.component';
 
 @NgModule({
   declarations: [
     BoardListComponent,
-    BoardComponent
+    BoardComponent,
+    BoardDialogComponent,
+    TaskDialogComponent
   ],
   imports: [
     CommonModule,

@@ -5,7 +5,7 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class ThemeService {
-  themeModeChanged = new BehaviorSubject<string>('dark-mode');
+  themeModeChanged = new BehaviorSubject<string>('light-mode');
 
   getNextTheme() {
     switch (this.themeModeChanged.value) {
