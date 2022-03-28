@@ -31,6 +31,11 @@ import { BoardService } from '../board.service';
       <button mat-button [mat-dialog-close]="data">
         {{ data.isNew ? 'Add Task' : 'Update Task' }}
       </button>
+
+      <app-delete-button
+        (delete)="handleTaskDelete()"
+        *ngIf="!data.isNew"
+      ></app-delete-button>
     </div>
   `,
   styleUrls: ['./dialogs.scss'],
